@@ -38,6 +38,15 @@ def prime_factors(f):
     return factors
 
 
+def primes_under(n):
+    prime = 2
+    prev_primes = []
+    while prime < n:
+        prev_primes.append(prime)
+        prime = next_prime(prime, prev_primes)
+    return prev_primes
+
+
 def prime_decomposition(n):
     prime_factors = []
     prime_numbers = []
