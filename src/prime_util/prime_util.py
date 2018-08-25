@@ -59,3 +59,36 @@ def prime_decomposition(n):
         prime_numbers.append(next_p)
         next_p = next_prime(next_p, prime_numbers)
     return prime_factors
+
+
+def prime_decomposition_dict(n):
+    prime_factors_dic = {}
+    prime_numbers = []
+    remaining = n
+    next_p = 2
+    while remaining > 1:
+        while remaining % next_p == 0:
+            remaining = remaining / next_p
+            if next_p in prime_factors_dic:
+                prime_factors_dic[next_p] += 1
+            else:
+                prime_factors_dic[next_p] = 1
+        prime_numbers.append(next_p)
+        next_p = next_prime(next_p, prime_numbers)
+    return prime_factors_dic
+
+
+def prime_decomposition_dict_using(n, table_of_primes):
+    prime_factors_dic = {}
+    remaining = n
+    next_p_index = 0
+    while remaining > 1:
+        next_p = table_of_primes[next_p_index]
+        while remaining % next_p == 0:
+            remaining = remaining / next_p
+            if next_p in prime_factors_dic:
+                prime_factors_dic[next_p] += 1
+            else:
+                prime_factors_dic[next_p] = 1
+        next_p_index += 1
+    return prime_factors_dic
